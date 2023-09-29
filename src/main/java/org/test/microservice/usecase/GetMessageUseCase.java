@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface GetMessageUseCase {
 
-  List<Message> getAll();
+    List<Message> getAll();
 
-  Message getById(int id);
+    Message getById(int id);
 }

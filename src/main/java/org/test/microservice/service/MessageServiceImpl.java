@@ -12,25 +12,25 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MessageServiceImpl implements MessageService {
 
-  private final MessageRepository messageRepository;
+    private final MessageRepository messageRepository;
 
-  @Override
-  public List<Message> getAll() {
-    return null;
-  }
+    @Override
+    public List<Message> getAll() {
+        return null;
+    }
 
-  @Override
-  public Message getById() {
-    return null;
-  }
+    @Override
+    public Message getById() {
+        return null;
+    }
 
-  @Override
-  public List<Message> getByType(MessageType type) {
-    return null;
-  }
+    @Override
+    public List<Message> getByType(MessageType type) {
+        return null;
+    }
 
-  @Override
-  public void save(Message message) {
+    @Override
+    public void save(Message message) {
 
-  }
+    }
 }

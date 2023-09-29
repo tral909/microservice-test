@@ -13,9 +13,10 @@
             CREATE TABLE message
             (
                 id     BIGINT       NOT NULL,
-                `from` VARCHAR(255) NULL,
-                `to`   VARCHAR(255) NULL,
+                "from" VARCHAR(255) NULL,
+                "to"   VARCHAR(255) NULL,
                 text   VARCHAR(255) NULL,
+                type   VARCHAR(255) NOT NULL,
                 CONSTRAINT pk_message PRIMARY KEY (id)
             );
         </sql>

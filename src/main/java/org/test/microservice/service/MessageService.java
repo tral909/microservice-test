@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface MessageService {
 
-  List<Message> getAll();
+    List<Message> getAll();
 
-  Message getById();
+    Message getById();
 
-  List<Message> getByType(MessageType type);
+    List<Message> getByType(MessageType type);
 
-  void save(Message message);
+    void save(Message message);
 }

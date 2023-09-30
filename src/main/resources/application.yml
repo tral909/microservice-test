@@ -15,11 +15,12 @@ spring:
     port: 5672
     username: user
     password: pass
+    listener:
+      simple:
+        default-requeue-rejected: false
 
 rabbitmq:
   message:
     queue-name: sms.data
     exchange: testExchange
     routing-key: testRoutingKey
-
-#logging.level.root=DEBUG

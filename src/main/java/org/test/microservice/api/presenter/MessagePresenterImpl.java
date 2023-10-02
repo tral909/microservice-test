@@ -23,27 +23,20 @@ public class MessagePresenterImpl implements MessagePresenter {
     @Override
     @NotNull
     public List<MessageDto> getAll() {
-        List<MessageDto> messageDtoList = new ArrayList<>();
-        for (Message message : getMessageUseCase.getAll()) {
-            messageDtoList.add(messageMapper.map(message));
-        }
-        return messageDtoList;
+        return messageMapper.toMessageListDto(getMessageUseCase.getAll());
     }
 
     @Override
     @NotNull
     public MessageDto getById(long id) {
-        return messageMapper.map(getMessageUseCase.getById((int) id));
+        return messageMapper.toMessageDto(getMessageUseCase.getById(id));
     }
 
     @Override
     @NotNull
     public List<MessageDto> getByType(@NotNull MessageType type) {
-        List<MessageDto> messageDtoList = new ArrayList<>();
-        for (Message message : getMessageUseCase.getAll()) {
-            messageDtoList.add(messageMapper.map(message));
-        }
-        log.debug("Message count {}", messageDtoList);
-        return Collections.emptyList();
+        List<Message> messages = getMessageUseCase.getByType(type);
+        log.debug("Message count {}", messages.size());
+        return messageMapper.toMessageListDto(messages);
     }
 }

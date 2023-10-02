@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface SaveMessageUseCase {
 
+    void save(Message message);
+
     void saveAll(@NotNull List<Message> message);
 }

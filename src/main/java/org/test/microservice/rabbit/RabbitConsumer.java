@@ -8,9 +8,9 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import org.test.microservice.database.repository.MessageRepository;
 import org.test.microservice.mapper.MessageMapper;
 import org.test.microservice.rabbit.dto.MessageRabbitDto;
+import org.test.microservice.usecase.SaveMessageUseCase;
 
 import java.util.List;
 
@@ -21,11 +21,11 @@ import java.util.List;
 public class RabbitConsumer {
 
     private final MessageMapper messageMapper;
-    private final MessageRepository messageRepository;
+    private final SaveMessageUseCase saveMessageUseCase;
 
     @RabbitListener(queues = "${rabbitmq.message.queue-name}")
     public void receiveMessage(@Valid @NotEmpty @Payload List<MessageRabbitDto> dto) {
         log.info("RabbitListener dto: {}", dto);
-        messageRepository.saveAll(messageMapper.mapRabbitDtoList(dto));
+        saveMessageUseCase.saveAll(messageMapper.mapRabbitDtoList(dto));
     }
 }

@@ -12,14 +12,20 @@ import java.util.List;
 @Mapper
 public interface MessageMapper {
 
-    MessageDto map(Message message);
+    MessageDto toMessageDto(Message message);
 
-    Message mapMessage(MessageEntity entity);
+    List<MessageDto> toMessageListDto(List<Message> message);
 
-    List<Message> mapMessageList(List<MessageEntity> entity);
+    Message mapMessageEntity(MessageEntity entity);
+
+    List<Message> mapMessageEntityList(List<MessageEntity> entity);
+
+    MessageEntity mapMessage(Message message);
+
+    List<MessageEntity> mapMessageList(List<Message> message);
 
     @Mapping(target = "type", expression = "java(org.test.microservice.en.MessageType.getTypeById(dto.getType()))")
-    MessageEntity mapRabbitDto(MessageRabbitDto dto);
+    Message mapRabbitDto(MessageRabbitDto dto);
 
-    List<MessageEntity> mapRabbitDtoList(List<MessageRabbitDto> dtos);
+    List<Message> mapRabbitDtoList(List<MessageRabbitDto> dtos);
 }

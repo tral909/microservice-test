@@ -1,4 +1,4 @@
-package org.test.microservice.rabbit;
+package org.test.microservice.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.Binding;

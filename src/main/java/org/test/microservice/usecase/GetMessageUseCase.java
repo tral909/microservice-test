@@ -12,4 +12,6 @@ public interface GetMessageUseCase {
     List<Message> getByType(MessageType type);
 
     Message getById(long id);
+
+    long countByType(MessageType type);
 }

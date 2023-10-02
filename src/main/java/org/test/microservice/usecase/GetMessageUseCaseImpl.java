@@ -32,4 +32,9 @@ public class GetMessageUseCaseImpl implements GetMessageUseCase {
                 .map(messageMapper::mapMessageEntity)
                 .orElseThrow();
     }
+
+    @Override
+    public long countByType(MessageType type) {
+        return messageRepository.countByType(type);
+    }
 }

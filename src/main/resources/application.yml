@@ -24,3 +24,7 @@ rabbitmq:
     queue-name: sms.data
     exchange: testExchange
     routing-key: testRoutingKey
+
+message.statistic.export:
+  cron: "0 * * * * *"
+  file: "message_statistic.json"

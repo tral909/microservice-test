@@ -1,6 +1,8 @@
 package org.test.microservice.usecase;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.test.microservice.database.repository.MessageRepository;
 import org.test.microservice.en.MessageType;
@@ -17,8 +19,8 @@ public class GetMessageUseCaseImpl implements GetMessageUseCase {
     private final MessageMapper messageMapper;
 
     @Override
-    public List<Message> getAll() {
-        return messageMapper.mapMessageEntityList(messageRepository.findAll());
+    public Page<Message> getAll(Pageable pageable) {
+        return messageRepository.findAll(pageable).map(messageMapper::mapMessageEntity);
     }
 
     @Override

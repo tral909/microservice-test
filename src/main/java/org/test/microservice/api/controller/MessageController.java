@@ -2,6 +2,8 @@ package org.test.microservice.api.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.test.microservice.en.MessageType;
 import org.test.microservice.api.dto.MessageDto;
@@ -18,8 +20,8 @@ public class MessageController {
 
     @GetMapping
     @NotNull
-    public List<MessageDto> getAll() {
-        return messagePresenter.getAll();
+    public Page<MessageDto> getAll(Pageable pageable) {
+        return messagePresenter.getAll(pageable);
     }
 
     @GetMapping("/{id}")
@@ -30,7 +32,7 @@ public class MessageController {
 
     @GetMapping(params = "type")
     @NotNull
-    public List<MessageDto> getById(@PathVariable MessageType type) {
+    public List<MessageDto> getByType(@RequestParam MessageType type) {
         return messagePresenter.getByType(type);
     }
 }

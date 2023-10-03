@@ -46,17 +46,21 @@ public class MessageStatisticExportScheduler {
     }
 
     private void logNotSmsMessagesCount(List<CustomMessageEntity> statistic) {
-        long noSmsCount = statistic.stream()
-                .filter(st -> st.getType() != MessageType.SMS)
+        long total = statistic.stream()
                 .map(CustomMessageEntity::getCount)
                 .mapToLong(Long::valueOf)
                 .sum();
-        // calculateService я не буду использовать,
-        // потому что там:
-        // 1) ошибка: smsCount - allCount, а должно быть наоборот
-        // 2) параметры int а лучше чтобы были long
-        //long noSmsCount = calculateService.calculateWithoutSms((int) total, (int) sms);
+        long smsCount = statistic.stream()
+                .filter(st -> st.getType() == MessageType.SMS)
+                .map(CustomMessageEntity::getCount)
+                .mapToLong(Long::valueOf)
+                .sum();
 
+        // В calculateService есть недочеты:
+        // 1) ошибка: из smsCount вычитается allCount.
+        // Здесь поменял местами параметры в вызове метода, но это неправильно и надо править библиотеку
+        // 2) параметры int, а лучше чтобы были long
+        int noSmsCount = calculateService.calculateWithoutSms((int) smsCount, (int) total);
         log.info("Total not sms messages: {}", noSmsCount);
     }
 }

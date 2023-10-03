@@ -12,7 +12,6 @@ import org.test.library.MetricService;
 import org.test.microservice.en.MessageType;
 import org.test.microservice.mapper.MessageMapper;
 import org.test.microservice.rabbit.dto.MessageRabbitDto;
-import org.test.microservice.usecase.GetMessageUseCase;
 import org.test.microservice.usecase.SaveMessageUseCase;
 
 import java.util.List;
@@ -27,7 +26,6 @@ public class RabbitConsumer {
 
     private final MetricService metricService;
     private final MessageMapper messageMapper;
-    private final GetMessageUseCase getMessageUseCase;
     private final SaveMessageUseCase saveMessageUseCase;
 
     @RabbitListener(queues = "${rabbitmq.message.queue-name}")
